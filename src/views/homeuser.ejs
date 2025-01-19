@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <style>
+         body {
+            font-family: 'Arial', sans-serif;
+        }
+        .carousel-inner img {
+            height: 500px; /* Sesuaikan tinggi gambar sesuai kebutuhan */
+            object-fit: cover; /* Pastikan seluruh gambar terlihat */
+            width: 100%; /* Pastikan gambar mengambil lebar penuh */
+        }
+        .carousel-caption h5 {
+            font-weight: bolder; /* Pemilihan font tebal */
+            font-size: 40px;
+        }
+        .carousel-caption p {
+            font-weight: bolder; /* Pemilihan font tebal */
+            font-size: 20px;
+        }
+        .service-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+            margin-bottom: 80px;
+        }
+        .service-box:hover {
+            background-color: #f8f9fa;
+            border-color: #333;
+        }
+        .section-header {
+            margin-bottom: 40px;
+        }
+        .text-center h1 {
+            text-align: center;
+            font-weight: bolder;
+            font-size: 3.5rem; /* Perbesar ukuran font */
+            color: #333; /* Warna font biru */
+            font-weight: bolder; /* Pemilihan font tebal */
+        }
+        .section-header h2 {
+            font-size: 3.5rem; /* Perbesar ukuran font */
+            margin-bottom: 10px;
+            color: #333; /* Warna font biru */
+            font-weight: bolder; /* Pemilihan font tebal */
+        }
+        .section-header p {
+            font-size: 1.3rem; /* Perbesar ukuran font */
+        }
+        .footer {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .about-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px; /* Jarak antar elemen */
+            margin: 50px 0;
+            margin-top: 300px;
+            margin-bottom: 300px;
+        }
+
+        .about-section .col-md-6 {
+            flex: 1; /* Membagi kolom secara proporsional */
+        }
+
+        .about-section img {
+            max-width: 80%;
+            border-radius: 10px; /* Membuat sudut gambar melengkung */
+        }
+
+        .section-header {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .section-header .title {
+            font-size: 50px;
+            font-weight: bold;
+            color: #333; /* Biru untuk judul */
+        }
+
+        .section-header .subtitle {
+            font-size: 50px;
+            font-weight: 700;
+            color: #333; /* Coklat gelap untuk subjudul */
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 22px;
+            line-height: 1.8;
+            color: #4D4D4D;
+        }
+
+        .features {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            color: #4D4D4D; /* Ungu untuk ikon dan teks */
+            font-weight: bold;
+        }
+
+        .features li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .section-header a {
+            color: inherit; /* Warna akan mengikuti warna teks di sekitarnya */
+            text-decoration: none; /* Menghilangkan garis bawah */
+        }
+
+        .section-header a:hover {
+            color: #5C196E; /* Warna saat hover, sesuaikan dengan kebutuhan */
+            text-decoration: none; /* Menambahkan garis bawah saat hover */
+        }
+        #loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.8); /* Warna putih dengan transparansi */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        }
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/user/home">
+                <img src="/public/images/logo2.png" alt="Website Logo" style="height: 60px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link <%= showNavbar && currentPage === 'homeuser' ? 'active' : '' %>" href="/user/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <%= showNavbar && currentPage === 'pesanan' ? 'active' : '' %>" href="/pesanan">Pesanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <%= showNavbar && currentPage === 'about' ? 'active' : '' %>" href="/about">About</a>
+                    </li>
+                    <!-- Tombol logout di pojok kanan dengan ikon -->
+                    <li class="nav-item ms-auto">
+                        <form action="<%= url %>login/logout" class="d-inline">
+                            <button class="btn btn-link nav-link" type="submit">
+                                <i class="fas fa-sign-out-alt logout-icon"></i> Sign Out
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Elemen loading -->
+    <div id="loading" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Konten halaman -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutForm = document.querySelector('form[action*="logout"]');
+            logoutForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Mencegah pengiriman form langsung
+                document.getElementById('loading').style.display = 'flex';
+                setTimeout(() => {
+                    logoutForm.submit(); // Mengirim form setelah penundaan
+                }, 2000); // Penundaan 2 detik (2000 milidetik)
+            });
+        });
+    </script>
+
+    <!-- Bagian Carousel -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/public/images/kucing.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Selamat Datang di MyPet</h5>
+                    <p>Mitra terpercaya Anda dalam perawatan dan penitipan hewan peliharaan.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/public/images/burung.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Perawatan Hewan Berkualitas</h5>
+                    <p>Kami menyediakan perawatan terbaik untuk hewan peliharaan Anda.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/public/images/anjing.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Penitipan yang Aman dan Nyaman</h5>
+                    <p>Fasilitas kami memastikan hewan peliharaan Anda aman dan nyaman.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Sebelumnya</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Selanjutnya</span>
+        </button>
+    </div>
+
+    <!-- Bagian Informasi -->
+    <div class="container mt-5">
+        <header class="text-center mb-5">
+            <h1>Welcome, <b><%= name %></b></h1>
+            <p class="lead">Kami menyediakan layanan penitipan dan perawatan hewan peliharaan Anda.</p>
+        </header>
+        <section class="about-section">
+            <div class="col-md-6">
+                <img src="/public/images/tentang.jpg" alt="Tentang Kami">
+            </div>
+            <div class="col-md-6">
+                <div class="section-header">
+                    <h2 class="title">Siap Selalu</h2>
+                    <h3 class="subtitle">Panggilan Ke Rumah</h3>
+                    <p>MyPet adalah mitra terpercaya Anda dalam penitipan dan perawatan hewan peliharaan. Kami memastikan hewan peliharaan Anda mendapatkan perawatan terbaik selama Anda tidak bisa merawatnya.</p>
+                    <p>Untuk informasi lebih lanjut tentang kami, silakan kunjungi halaman <a href="/aboutpage">About</a>.</p>
+                    <ul class="features">
+                        <li>✅ Dokter hewan berpengalaman</li>
+                        <li>✅ Profesional dan cepat tanggap</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <div class="section-header text-center">
+                <h2>Apa Saja Layanan di MyPet ?</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="service-box text-center">
+                        <h3>Penitipan Hewan</h3>
+                        <p>Kami menyediakan layanan penitipan hewan yang aman dan nyaman untuk hewan peliharaan Anda.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-box text-center">
+                        <h3>Perawatan Hewan</h3>
+                        <p>Kami menyediakan layanan perawatan hewan yang berkualitas untuk memastikan hewan peliharaan Anda tetap sehat dan bahagia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer text-center py-3 mt-5">
+        <p>&copy; 2024 MyPet by Kelompok 5. Hak cipta dilindungi undang-undang.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

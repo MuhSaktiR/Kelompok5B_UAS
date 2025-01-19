@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <style>
+        body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        }
+        .section-header {
+            margin-bottom: 40px;
+        }
+        .section-header h1, .section-header h2 {
+            font-size: 2.5rem;
+            color: #5a4633;
+            font-weight: bolder;
+        }
+        .section-header p {
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: bold;
+        }
+        .text-center a {
+            text-align: center;
+            color: #333;
+            text-decoration: none;
+        }
+        .text-center a:hover {
+            color: #777474;
+            text-decoration: none;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .team-section {
+            margin-top: 40px;
+            margin-bottom: 80px;
+        }
+        .team-section h2 {
+            font-size: 3rem;
+            color: #5a4633;
+            font-weight: bolder;
+        }
+        .team-section p {
+            font-size: 1rem;
+            font-weight: bolder;
+        }
+        .team-section .team-member {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .team-section .team-member img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .team-section .team-member h3 {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            color: #333;
+        }
+        .team-section .team-member p {
+            font-size: 1rem;
+            color: #6c757d;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+        .text-section {
+            flex: 1;
+            margin-right: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+        .text-section h2 {
+            font-size: 2rem;
+            color: #5a4633;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .text-section p {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .text-section ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+            background-color:  #f3e7da;;
+        }
+        .text-section ul li {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .text-section a {
+            color: #ceb397;
+            text-decoration: none;
+        }
+        .text-section a:hover {
+            text-decoration: underline;
+        }
+        .accordion-item {
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            background-color: #f3e7da;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-header:hover {
+            background-color: #e8d6c3;
+        }
+        .accordion-content {
+            display: none;
+            padding: 15px;
+            background-color: #fff;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .accordion-content p {
+            margin: 0;
+        }
+        .image-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/public/images/logo2.png" alt="Logo Website" style="height: 60px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link <%= showNavbar && currentPage === 'home' ? 'active' : '' %>" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <%= showNavbar && currentPage === 'aboutpage' ? 'active' : '' %>" href="/aboutpage">About</a>
+                    </li>
+                    <li class="nav-item ms-auto">
+                        <form action="<%= url %>login" class="d-inline">
+                            <button class="btn btn-link nav-link" type="submit">
+                                <i class="fas fa-sign-in-alt login-icon"></i> Login
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <header class="text-center mb-5 section-header">
+            <h1>Tentang Kami</h1>
+            <p class="lead">Pelajari lebih lanjut tentang apa yang kami tawarkan.</p>
+        </header>
+    </div>
+
+    <div class="container mt-5" style="margin-bottom: 100px;">
+        <!-- Bagian Layanan Kami -->
+        <div class="row align-items-center mb-5" style="margin-bottom: 150px;">
+            <div class="col-md-6 image-section">
+                <img src="/public/images/kucingabout3.jpg" alt="Layanan Image" class="img-fluid">
+            </div>
+            <div class="col-md-6 text-section">
+                <h2>Layanan Kami</h2>
+                <p>Kami menyediakan layanan penitipan dan perawatan hewan peliharaan Anda. Layanan kami meliputi:</p>
+                    <div class="accordion-item">
+                        <div class="accordion-header">Penitipan harian dan mingguan</div>
+                        <div class="accordion-content">
+                            <p>Kami menyediakan layanan penitipan harian dan mingguan bagi hewan peliharaan Anda.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">Perawatan kesehatan dan kebersihan</div>
+                        <div class="accordion-content">
+                            <p>Kami memberikan perawatan kesehatan dan kebersihan yang terbaik bagi hewan peliharaan Anda.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">Pemberian makan dan minum sesuai jadwal</div>
+                        <div class="accordion-content">
+                            <p>Kami memberikan makanan dan minuman sesuai jadwal yang telah ditentukan.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">Aktivitas bermain dan latihan</div>
+                        <div class="accordion-content">
+                            <p>Kami memberikan aktivitas bermain dan latihan bagi hewan peliharaan Anda.</p>
+                        </div>
+                    </div>
+                <p>Kami berkomitmen untuk memberikan perawatan terbaik bagi hewan peliharaan Anda. Untuk memesan layanan kami, silakan <a href="/login">Login</a>.</p>
+            </div>
+        </div>
+
+
+        <div class="row align-items-center" style="margin-bottom: 100px;">
+            <div class="col-md-6 text-section">
+                <h2>Kelebihan MyPet</h2>
+                <div class="accordion-item">
+                    <div class="accordion-header">Berpengalaman dan Profesional</div>
+                    <div class="accordion-content">
+                        <p>Kami memiliki tim profesional yang berpengalaman dalam merawat berbagai jenis hewan peliharaan.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">Menyayangi Hewan</div>
+                    <div class="accordion-content">
+                        <p>Kami menyayangi hewan peliharaan Anda seolah-olah itu adalah milik kami sendiri.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">Siap Sedia dan Tanggap</div>
+                    <div class="accordion-content">
+                        <p>Kami siap merespons kebutuhan dan keadaan darurat dengan cepat.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">Peduli dan Membantu</div>
+                    <div class="accordion-content">
+                        <p>Kami peduli dengan kesejahteraan hewan peliharaan Anda dan selalu berusaha membantu.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 image-section">
+                <img src="/public/images/kucingabout2.jpg" alt="Pet Image" class="img-fluid">
+            </div>
+        </div>
+
+        <!-- Bagian Tim Kami -->
+        <section class="team-section text-center">
+            <h2>Tim Kami</h2>
+            <p>Kami adalah tim yang terdiri dari 5 orang dari Kelompok 5.
+            <div class="row">
+                <div class="col-md-4 team-member">
+                    <img src="/public/images/logo.jpg" alt="Anggota Tim 1">
+                    <h3>Muhamad Sakti Ramadhan</h3>
+                    <p>Role Use Case Diagram dan Backend</p>
+                </div>
+                <div class="col-md-4 team-member">
+                    <img src="/public/images/logo.jpg" alt="Anggota Tim 2">
+                    <h3>Muhammad Nilzam Yahya</h3>
+                    <p>Role UI dan Laporan.</p>
+                </div>
+                <div class="col-md-4 team-member">
+                    <img src="/public/images/logo.jpg" alt="Anggota Tim 3">
+                    <h3>Muhammad Zharfan Widyadana</h3>
+                    <p>Role Frontend.</p>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6 team-member">
+                    <img src="/public/images/logo.jpg" alt="Anggota Tim 4">
+                    <h3>Agil Imam Alhafizi</h3>
+                    <p>Role Class Diagram dan Testing </p>
+                </div>
+                <div class="col-md-5 team-member">
+                    <img src="/public/images/logo.jpg" alt="Anggota Tim 5">
+                    <h3>Rangga Hijriawan Haryadi</h3>
+                    <p>Role Database dan ERD</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer text-center py-3 mt-5">
+        <p>&copy; 2024 MyPet by Kelompok 5. Hak cipta dilindungi undang-undang.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript untuk accordion
+        document.addEventListener('DOMContentLoaded', function() {
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isOpen = content.style.display === 'block';
+                document.querySelectorAll('.accordion-content').forEach(item => item.style.display = 'none');
+                content.style.display = isOpen ? 'none' : 'block';
+            });
+        });
+    });
+    </script>
+</body>
+</html>

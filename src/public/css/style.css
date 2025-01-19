@@ -1,0 +1,326 @@
+html, body {
+    height: 100%;
+}
+
+/* Menghapus margin pada body */
+body {
+    margin: 0;
+    font-family: sans-serif; /* Menggunakan font sans-serif */
+}
+
+/* Container umum */
+.container {
+    flex-grow: 1;
+    padding: 25px; /* Menyesuaikan padding */
+    margin-top: 20px; /* Memberi jarak dari navbar */
+    flex: 1;
+}
+
+/* Form card umum */
+.form-card {
+    max-width: 380px; /* Menjaga lebar maksimal */
+    margin: 0 auto; /* Memastikan form berada di tengah */
+    padding: 10px; /* Menyesuaikan padding */
+    width: 100%; /* Pastikan form-card menggunakan seluruh lebar kontainer */
+    background-color: #ffffff; /* Warna latar belakang */
+}
+
+/* Gaya untuk judul form */
+.form-card h2 {
+    color: #737679; /* Ganti dengan warna abu-abu atau warna lain sesuai kebutuhan */
+    font-size: 40px;
+    margin-top: -40px;
+}
+
+/* Gaya logo */
+.logo {
+    width: 100px; /* Menjaga ukuran logo tetap konsisten */
+    margin-bottom: 20px; /* Mengurangi jarak bawah logo */
+    margin-top: 20px;
+}
+
+/* Gaya untuk input dan tombol */
+.form-control, .btn {
+    font-size: 1.1em; /* Ukuran font seragam */
+}
+
+/* Styling form tambahan jika diperlukan */
+.form-control {
+    border-radius: 5px; /* Sudut melengkung */
+}
+
+/* Link tambahan */
+p.text-center {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.text-center h2{
+    font-weight: bold;
+}
+
+.text-center a {
+    color: #e49629; /* Warna link */
+    text-decoration: none; /* Menghilangkan underline */
+}
+
+.text-center a:hover {
+    color: #c2760b; /* Warna link */
+    text-decoration: none; /* Menghilangkan underline */
+}
+
+/* Form Styles */
+.input-group {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.input-group-append {
+    background-color: #007BFF;
+}
+
+input[type="text"] {
+    border-radius: 5px 0 0 5px;
+    padding: 10px;
+    font-size: 1.1em;
+}
+
+button {
+    border-radius: 0 5px 5px 0;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.center-btn { /* Gaya untuk tombol dengan kelas center-btn */
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    background-color: #e49629; /* Warna latar belakang tombol */
+    color: #fff;
+    outline: none;
+}
+
+.center-btn:hover { /* Gaya hover untuk tombol dengan kelas center-btn */
+    background-color: #bd8434; /* Warna hover untuk tombol dengan kelas center-btn */
+    color: #fff;
+}
+
+/* Todo List - Grid Layout */
+#todoList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom dengan lebar sama */
+    gap: 20px; /* Spasi antar elemen */
+    margin-top: 20px;
+}
+
+/* Todo Card Styles */
+.todo-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Menempatkan elemen secara horizontal di tengah */
+    justify-content: center; /* Menempatkan elemen secara vertikal di tengah */
+    margin: 10px;
+    text-align: center; /* Mengatur agar teks berada di tengah */
+    
+}
+
+.todo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom dengan lebar sama */
+    gap: 20px; /* Spasi antar elemen */
+}
+
+.todo-card:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+span.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    
+}
+
+/* Button Styles */
+.card-actions .btn {
+    display: inline-block;
+    width: 100%; /* Atur ukuran tombol agar mengisi lebar yang diinginkan */
+    max-width: 120px; /* Ubah sesuai kebutuhan */
+    padding: 8px 12px; /* Padding konsisten */
+    margin: 0; /* Tanpa margin tambahan */
+    font-size: 14px;
+    box-sizing: border-box; /* Pastikan padding dan border dihitung dalam lebar elemen */
+}
+
+.card-actions .btn-warning {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+.card-actions .btn-danger {
+    background-color: #d9534f;
+    color: white;
+}
+
+.card-actions .btn:hover {
+    opacity: 0.8;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #007BFF; /* Warna navbar */
+    padding: 10px 20px; /* Padding pada navbar */
+    border-radius: 0 0 10px 10px; /* Membuat ujung navbar melengkung */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Memberikan bayangan pada navbar */
+}
+
+/* Gaya untuk logo di navbar */
+.navbar-brand img {
+    max-width: none; /* Abaikan batasan global */
+    height: 10px; /* Sesuaikan tinggi */
+    width: auto; /* Pertahankan rasio */
+}
+
+.navbar-brand {
+    display: inline-flex; /* Agar fleksibel */
+    overflow: visible; /* Izinkan konten melampaui batas kontainer */
+}
+
+.navbar-nav {
+    display: flex; /* Menggunakan flexbox untuk menata item navbar */
+    justify-content: center; /* Memusatkan item navbar */
+    margin-left: 0; /* Menghapus margin kiri */
+    width: 100%; /* Agar navbar-nav mengisi lebar penuh */
+}
+
+.nav-item {
+    padding: 0 15px; /* Jarak antar item */
+}
+
+.nav-link {
+    color: rgb(0, 0, 0); /* Warna link navbar */
+    font-size: 1.1em; /* Ukuran font untuk link */
+    text-decoration: none; /* Menghilangkan underline default */
+    position: relative; /* Membantu untuk positioning pseudo-element */
+}
+
+.nav-link.active::after {
+    content: ''; /* Membuat elemen pseudo */
+    display: block;
+    width: 100%; /* Lebar underline sesuai panjang teks */
+    height: 2px; /* Ketebalan underline */
+    background-color: #606060; /* Warna underline */
+    position: absolute;
+    bottom: 5px; /* Jarak dari teks */
+    left: 0; /* Posisi horizontal */
+}
+
+.nav-link:hover {
+    color: #666666; /* Mengubah warna saat hover */
+}
+
+/* Styling for Active Navbar Item */
+
+/* Navbar-toggler Styling */
+.navbar-toggler {
+    border: none; /* Menghilangkan border pada tombol navbar */
+}
+
+.navbar-toggler-icon {
+    background-color: rgb(129, 129, 129); /* Ubah warna ikon toggle menjadi merah */
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center; /* Pastikan item navbar berada di tengah */
+    width: 100%; /* Full width */
+}
+
+
+/* Pindahkan logout ke kanan */
+.navbar-nav.ml-auto {
+    margin-left: auto; /* Menggeser item logout ke sebelah kanan */
+}
+
+/* Logout button styling */
+.nav-item .btn-link:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Efek saat hover pada tombol logout */
+}
+
+/* Modal Styles */
+.modal-header {
+    background-color: #007BFF;
+    color: white;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Spasi antar modal */
+}
+
+.modal-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px; /* Sesuaikan dengan lebar modal yang diinginkan */
+}
+
+.modal-content {
+    width: 100%; /* Pastikan konten modal menggunakan seluruh lebar modal */
+}
+
+.modal-item {
+    flex: 1 1 calc(33.333% - 20px); /* 33.333% lebar untuk 3 modal per baris dengan margin */
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .modal-item {
+        flex: 1 1 calc(50% - 20px); /* 2 modal per baris di layar lebih kecil */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-item {
+        flex: 1 1 100%; /* 1 modal per baris di layar kecil */
+    }
+}
+
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #777;
+}
