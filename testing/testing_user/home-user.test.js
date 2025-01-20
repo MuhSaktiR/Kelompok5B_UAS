@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
-const userController = require('../src/controllers/controller-user'); // Sesuaikan path jika diperlukan
+const userController = require('../../src/controllers/controller-user'); // Sesuaikan path jika diperlukan
 
 // Mocking database connection
 jest.mock('mysql', () => {

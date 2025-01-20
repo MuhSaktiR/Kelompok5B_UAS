@@ -2,7 +2,7 @@ const request = require('supertest');
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const { calculateTotalPrice, getPesanan, getDetailPesanan, konfirmasiPesanan, cancelPesanan} = require('../src/controllers/controller-pesanan');
+const { calculateTotalPrice, getPesanan, getDetailPesanan, konfirmasiPesanan, cancelPesanan} = require('../../src/controllers/controller-pesanan');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 

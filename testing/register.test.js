@@ -61,10 +61,10 @@ app.post('/register/save', userController.saveRegister);
 
 describe('User Controller - Register', () => {
   // Test untuk menampilkan halaman registrasi (formRegister)
-  test('GET /register - harus merender halaman register dengan URL yang benar', async () => {
+  test('GET /register - should render register page with correct URL', async () => {
     const response = await request(app).get('/register');
 
-    console.log(response.text); // Tambahkan baris ini untuk debug teks respons
+    console.log(response.text); // Add this line to debug response text
     expect(response.status).toBe(200);
     expect(response.text).toContain('url: "http://localhost:3000/"');
   });

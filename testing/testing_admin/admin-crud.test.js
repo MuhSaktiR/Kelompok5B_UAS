@@ -1,5 +1,5 @@
 const session = require('express-session');
-const controllerAdmin = require('../src/controllers/controller-admin');
+const controllerAdmin = require('../../src/controllers/controller-admin');
 const mysql = require('mysql');
 const { name } = require('ejs');
 

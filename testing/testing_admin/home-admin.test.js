@@ -3,7 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const flash = require('req-flash');
 const path = require('path');
-const adminController = require('../src/controllers/controller-admin');
+const adminController = require('../../src/controllers/controller-admin');
 
 const app = express();
 
