@@ -1,10 +1,10 @@
 Link Testing 
 
 
-Admin :
+Admin : https://github.com/agilimam/Testing-Admin.git
 
 
-User :
+User : https://github.com/RanggaHijriawanHaryadi/Testing-User.git
 
 
 Link Database : https://umyac-my.sharepoint.com/:f:/g/personal/muhamad_sakti_ft22_mail_umy_ac_id/En1PpjUgqU5Bg5orob-9VzkB-7e5PsLx6_KPQqeeA7J9Ww
