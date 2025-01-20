@@ -269,13 +269,14 @@ describe('Controller Pesanan', () => {
   });
 
   describe('cancelPesanan', () => {
+
       it('harus mengembalikan status 401 jika userId tidak ada di sesi', () => {
           delete req.session.userid;
           cancelPesanan(req, res);
           expect(res.status).toHaveBeenCalledWith(401);
           expect(res.send).toHaveBeenCalledWith('Unauthorized: User ID is missing in session');
       });
-
+      
       it('harus mengembalikan status 500 jika terjadi kesalahan koneksi', () => {
           pool.getConnection.mockImplementationOnce((callback) => callback(new Error('Connection error'), null));
           cancelPesanan(req, res);
@@ -347,6 +348,51 @@ describe('Controller Pesanan', () => {
             cancelPesanan(req, res);
             expect(connection.release).toHaveBeenCalled();
             expect(res.sendStatus).toHaveBeenCalledWith(200);
+        });
+        it('harus berhasil jika affectedRows untuk detail adalah 0 lalu berhasil menambahkan detail', () => {
+            connection.beginTransaction.mockImplementationOnce((callback) => callback(null));
+            connection.query
+                .mockImplementationOnce((query, values, callback) => callback(null, { affectedRows: 1 })) // Update pesanan
+                .mockImplementationOnce((query, values, callback) => callback(null, { affectedRows: 0 })) // Update detail
+                .mockImplementationOnce((query, values, callback) => callback(null, { affectedRows: 1 })); // Insert detail
+            connection.commit.mockImplementationOnce((callback) => callback(null));
+        
+            cancelPesanan(req, res);
+        
+            expect(connection.commit).toHaveBeenCalled();
+            expect(connection.release).toHaveBeenCalled();
+            expect(res.sendStatus).toHaveBeenCalledWith(200);
+        });
+        it('harus mengembalikan status 500 jika INSERT INTO detail gagal', () => {
+            connection.beginTransaction.mockImplementationOnce((callback) => callback(null));
+            connection.query
+                .mockImplementationOnce((query, values, callback) => callback(null, { affectedRows: 1 })) // Update pesanan
+                .mockImplementationOnce((query, values, callback) => callback(null, { affectedRows: 0 })) // Update detail
+                .mockImplementationOnce((query, values, callback) => callback(new Error('Insert error'))); // Insert detail
+            connection.rollback.mockImplementationOnce((callback) => callback(null));
+        
+            cancelPesanan(req, res);
+        
+            expect(connection.rollback).toHaveBeenCalled();
+            expect(connection.release).toHaveBeenCalled();
+            expect(res.status).toHaveBeenCalledWith(500);
+            expect(res.send).toHaveBeenCalledWith('Internal Server Error');
+        });
+        it('harus mengembalikan status 500 jika commit setelah INSERT INTO detail gagal', () => {
+            connection.beginTransaction.mockImplementationOnce((callback) => callback(null));
+            connection.query
+                .mockImplementationOnce((query, values, callback) => callback(null, { affectedRows: 1 })) // Update pesanan
+                .mockImplementationOnce((query, values, callback) => callback(null, { affectedRows: 0 })) // Update detail
+                .mockImplementationOnce((query, values, callback) => callback(null, { affectedRows: 1 })); // Insert detail
+            connection.commit.mockImplementationOnce((callback) => callback(new Error('Commit error')));
+            connection.rollback.mockImplementationOnce((callback) => callback(null));
+        
+            cancelPesanan(req, res);
+        
+            expect(connection.rollback).toHaveBeenCalled();
+            expect(connection.release).toHaveBeenCalled();
+            expect(res.status).toHaveBeenCalledWith(500);
+            expect(res.send).toHaveBeenCalledWith('Internal Server Error');
         });
   });
 });
